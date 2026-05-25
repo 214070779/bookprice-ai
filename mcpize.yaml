@@ -1,0 +1,60 @@
+name: bookprice-ai
+version: 0.1.0
+description: AI-powered pricing and selection tool for second-hand book sellers. Analyzes any ISBN and returns market data, pricing recommendations, competition analysis, and trend data from Kongfz, Xianyu, and Duozhuayu.
+
+transport: stdio
+command: python3
+args:
+  - server.py
+
+categories:
+  - ai
+  - e-commerce
+  - data-analysis
+
+tags:
+  - books
+  - pricing
+  - second-hand
+  - isbn
+  - marketplace
+  - kongfz
+  - book-selling
+
+pricing:
+  - tier: Free
+    description: 50 ISBN analyses per month, all features included
+    price: 0
+    features:
+      - 50 analyses per month
+      - Full market data (Kongfz, Xianyu, Duozhuayu)
+      - AI pricing recommendation
+      - Competition analysis
+      - Markdown & JSON output
+    monthly_requests: 50
+
+  - tier: Pro
+    description: Unlimited analyses, priority support, early access to new features
+    price: 29
+    features:
+      - Unlimited analyses
+      - All market data sources
+      - AI pricing engine
+      - Batch analysis
+      - Priority support
+      - Early access to trends & deal finder
+    monthly_requests: 999999
+
+links:
+  documentation: https://github.com/214070779/bookprice-ai#readme
+  repository: https://github.com/214070779/bookprice-ai
+
+seo:
+  title: BookPrice AI - MCP Server for Second-hand Book Pricing
+  description: AI-powered pricing tool for second-hand book sellers. Enter ISBN, get market data + AI pricing recommendation. Supports Kongfz, Xianyu, Duozhuayu data.
+  keywords:
+    - book pricing ai
+    - second-hand book pricing
+    - isbn price analysis
+    - kongfz pricing tool
+    - book price checker
