@@ -226,21 +226,24 @@ class MockBookProvider(BookDataProvider):
 # ---------------------------------------------------------------------------
 
 def get_book_provider() -> BookDataProvider:
-    """
-    Returns the best available book data provider based on configuration.
-    
+    """Return the best available provider based on configured API keys.
+
     Priority:
-    1. If JISU_API_KEY is set → JisuISBNProvider
-    2. If KONGFZ_API_KEY is set → KongfzAPIProvider  
-    3. Otherwise → MockBookProvider (MVP mode)
-    
-    For MVP, returns MockBookProvider by default.
+    1. KongfzAPIProvider  — if KONGFZ_APP_KEY + KONGFZ_APP_SECRET are both set
+    2. JisuISBNProvider   — if JISU_API_KEY is set (metadata only, mock market)
+    3. MockBookProvider   — MVP / development mode (no keys needed)
     """
-    # TODO: Phase 2 — wire up real providers when API keys are configured
-    # jisu_key = os.environ.get("JISU_API_KEY")
-    # if jisu_key:
-    #     return JisuISBNProvider(api_key=jisu_key)
-    
+    kongfz_key = os.environ.get("KONGFZ_APP_KEY")
+    kongfz_secret = os.environ.get("KONGFZ_APP_SECRET")
+    if kongfz_key and kongfz_secret:
+        from utils.providers_kongfz import KongfzAPIProvider
+        return KongfzAPIProvider(app_key=kongfz_key, app_secret=kongfz_secret)
+
+    jisu_key = os.environ.get("JISU_API_KEY")
+    if jisu_key:
+        from utils.providers_jisu import JisuISBNProvider
+        return JisuISBNProvider(api_key=jisu_key)
+
     return MockBookProvider()
 
 
